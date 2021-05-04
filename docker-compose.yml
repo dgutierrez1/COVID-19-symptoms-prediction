@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  server:
+    build: ./packages/server
+    command: "Rscript Server.r"
+    ports:
+      - "8080:8080"
+  client:
+    build: ./packages/client
+    ports:
+      - "3000:3000"
