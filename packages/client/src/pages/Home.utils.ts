@@ -153,7 +153,7 @@ export const testEntry: UserEntry = {
   weight: 80,
 };
 
-export const testPositiveData: UserEntry = {
+export const testPositiveData1: UserEntry = {
   time_of_day: TimeDayType.DAY,
   bpm: 73,
   meanrr: 814.16,
@@ -173,6 +173,41 @@ export const testPositiveData: UserEntry = {
   height: 178,
   weight: 92.0,
 };
+export const testPositiveData: UserEntry = {
+  time_of_day: TimeDayType.MORNING,
+  bpm: 58,
+  meanrr: 1032.51,
+  mxdmn: 0.27,
+  sdnn: 65.332,
+  rmssd: 70.673,
+  pnn50: 45.45,
+  mode: 1.025,
+  amo: 31,
+  lf: 383,
+  hf: 1128,
+  vlf: 382,
+  lfhf: 0.34,
+  total_power: 1893,
+  gender: SexType.MALE,
+  age_range: AgeRangeType.from35To44,
+  height: 166,
+  weight: 55.0,
+};
+// 0.27
+// 65.332
+// 70.673
+// 45.45
+// 1.025
+// 31
+// 383
+// 1128
+// 382
+// 0.340
+// 1893
+// m
+// 35-44
+// 166
+// 55.0
 
 export const testNegativeData: UserEntry = {
   time_of_day: TimeDayType.MORNING,

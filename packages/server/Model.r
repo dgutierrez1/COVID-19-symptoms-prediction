@@ -13,8 +13,8 @@ executeModel = function(data){
     str(data)
     summary(data)
   print('Executing model...');
-  model = load('./model.RData')
+  model = load('./tree.model.RData')
     print('Executed model...');
-    pred = predict(logit.CV.rose.sampling, newdata=data)
+    pred = predict(tree.model.over, newdata=data)
     list(result = pred)
 }
