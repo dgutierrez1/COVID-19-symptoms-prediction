@@ -85,7 +85,18 @@ const LabelButton = styled(IonLabel)`
   padding: 0.5em;
 `;
 
+const BackButton = styled.button`
+  width: 7em;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: transparent;
+  border: 1px solid var(--ion-color-light-tint);
+  color: white;
+`;
+
 const Home: React.FC = () => {
+  const [section, setSection] = useState(0);
   const [error, setError] = useState<string>();
   const [result, setResult] = useState<any>();
   const isPositive = result === "1";
@@ -162,151 +173,161 @@ const Home: React.FC = () => {
             };
             return (
               <FormContainer>
-                <Select
-                  value={values.age_range}
-                  onChange={handleChange("age_range")}
-                  label="Age range"
-                  error={touched.age_range && errors.age_range}
-                  options={ageRangeOptions}
-                />
-                <Select
-                  value={values.gender}
-                  onChange={handleChange("gender")}
-                  label="Sex"
-                  error={touched.gender && errors.gender}
-                  options={genderOptions}
-                />
-                <Input
-                  type="number"
-                  value={values.weight}
-                  onChange={handleChange("weight")}
-                  label="Weight"
-                  error={touched.weight && errors.weight}
-                />
-                <Input
-                  type="number"
-                  value={values.height}
-                  onChange={handleChange("height")}
-                  label="Height"
-                  error={touched.height && errors.height}
-                />
-                <Select
-                  value={values.time_of_day}
-                  onChange={handleChange("time_of_day")}
-                  label="Time of Day"
-                  error={touched.time_of_day && errors.time_of_day}
-                  options={timeOfDayOptions}
-                />
-                <Input
-                  type="number"
-                  value={values.bpm}
-                  onChange={handleChange("bpm")}
-                  label="BPM - Heart rate during measurement (beats / minute)"
-                  error={touched.bpm && errors.bpm}
-                />
-                <Input
-                  type="number"
-                  value={values.amo}
-                  onChange={handleChange("amo")}
-                  label="Amo - Mode width (% / 50 milliseconds)"
-                  error={touched.amo && errors.amo}
-                />
+                {section === 0 && (
+                  <>
+                    <Select
+                      value={values.age_range}
+                      onChange={handleChange("age_range")}
+                      label="Age range"
+                      error={touched.age_range && errors.age_range}
+                      options={ageRangeOptions}
+                    />
+                    <Select
+                      value={values.gender}
+                      onChange={handleChange("gender")}
+                      label="Sex"
+                      error={touched.gender && errors.gender}
+                      options={genderOptions}
+                    />
+                    <Input
+                      type="number"
+                      value={values.weight}
+                      onChange={handleChange("weight")}
+                      label="Weight"
+                      error={touched.weight && errors.weight}
+                    />
+                    <Input
+                      type="number"
+                      value={values.height}
+                      onChange={handleChange("height")}
+                      label="Height"
+                      error={touched.height && errors.height}
+                    />
+                    <Select
+                      value={values.time_of_day}
+                      onChange={handleChange("time_of_day")}
+                      label="Time of Day"
+                      error={touched.time_of_day && errors.time_of_day}
+                      options={timeOfDayOptions}
+                    />
+                    <SendButton onClick={() => setSection(1)}>Next</SendButton>
+                  </>
+                )}
+                {section === 1 && (
+                  <>
+                    <BackButton onClick={() => setSection(0)}>Back</BackButton>
+                    <Input
+                      type="number"
+                      value={values.bpm}
+                      onChange={handleChange("bpm")}
+                      label="BPM - Heart rate during measurement (beats / minute)"
+                      error={touched.bpm && errors.bpm}
+                    />
+                    <Input
+                      type="number"
+                      value={values.amo}
+                      onChange={handleChange("amo")}
+                      label="Amo - Mode width (% / 50 milliseconds)"
+                      error={touched.amo && errors.amo}
+                    />
 
-                <Input
-                  type="number"
-                  value={values.hf}
-                  onChange={handleChange("hf")}
-                  label="HF - Power of high frequency waves (milliseconds ^ 2)"
-                  error={touched.hf && errors.hf}
-                />
-                <Input
-                  type="number"
-                  value={values.lf}
-                  onChange={handleChange("lf")}
-                  label="LF - Power of low frequency waves (milliseconds ^ 2)"
-                  error={touched.lf && errors.lf}
-                />
-                <Input
-                  type="number"
-                  value={values.lfhf}
-                  onChange={handleChange("lfhf")}
-                  label="LFHF - Low to high frequency wave ratio (lf / hf)"
-                  error={touched.lfhf && errors.lfhf}
-                />
-                <Input
-                  type="number"
-                  value={values.meanrr}
-                  onChange={handleChange("meanrr")}
-                  label="Mean RR - Mean time between each beat (milliseconds)"
-                  error={touched.meanrr && errors.meanrr}
-                />
-                <Input
-                  type="number"
-                  value={values.mode}
-                  onChange={handleChange("mode")}
-                  label="Mode - Length of the most common cardiovascular interval (milliseconds)"
-                  error={touched.mode && errors.mode}
-                />
-                <Input
-                  type="number"
-                  value={values.mxdmn}
-                  onChange={handleChange("mxdmn")}
-                  label="Mxdmn - Difference between highest and lowest cardio values (seconds)"
-                  error={touched.mxdmn && errors.mxdmn}
-                />
-                <Input
-                  type="number"
-                  value={values.pnn50}
-                  onChange={handleChange("pnn50")}
-                  label="PNN50 - % of RR intervals that fall outside a range of 50 ms from the average"
-                  error={touched.pnn50 && errors.pnn50}
-                />
-                <Input
-                  type="number"
-                  value={values.sdnn}
-                  onChange={handleChange("sdnn")}
-                  label="Sdnn - Standard deviation of normal heartbeat intervals (milliseconds)"
-                  error={touched.sdnn && errors.sdnn}
-                />
+                    <Input
+                      type="number"
+                      value={values.hf}
+                      onChange={handleChange("hf")}
+                      label="HF - Power of high frequency waves (milliseconds ^ 2)"
+                      error={touched.hf && errors.hf}
+                    />
+                    <Input
+                      type="number"
+                      value={values.lf}
+                      onChange={handleChange("lf")}
+                      label="LF - Power of low frequency waves (milliseconds ^ 2)"
+                      error={touched.lf && errors.lf}
+                    />
+                    <Input
+                      type="number"
+                      value={values.lfhf}
+                      onChange={handleChange("lfhf")}
+                      label="LFHF - Low to high frequency wave ratio (lf / hf)"
+                      error={touched.lfhf && errors.lfhf}
+                    />
+                    <Input
+                      type="number"
+                      value={values.meanrr}
+                      onChange={handleChange("meanrr")}
+                      label="Mean RR - Mean time between each beat (milliseconds)"
+                      error={touched.meanrr && errors.meanrr}
+                    />
+                    <Input
+                      type="number"
+                      value={values.mode}
+                      onChange={handleChange("mode")}
+                      label="Mode - Length of the most common cardiovascular interval (milliseconds)"
+                      error={touched.mode && errors.mode}
+                    />
+                    <Input
+                      type="number"
+                      value={values.mxdmn}
+                      onChange={handleChange("mxdmn")}
+                      label="Mxdmn - Difference between highest and lowest cardio values (seconds)"
+                      error={touched.mxdmn && errors.mxdmn}
+                    />
+                    <Input
+                      type="number"
+                      value={values.pnn50}
+                      onChange={handleChange("pnn50")}
+                      label="PNN50 - % of RR intervals that fall outside a range of 50 ms from the average"
+                      error={touched.pnn50 && errors.pnn50}
+                    />
+                    <Input
+                      type="number"
+                      value={values.sdnn}
+                      onChange={handleChange("sdnn")}
+                      label="Sdnn - Standard deviation of normal heartbeat intervals (milliseconds)"
+                      error={touched.sdnn && errors.sdnn}
+                    />
 
-                <Input
-                  type="number"
-                  value={values.total_power}
-                  onChange={handleChange("total_power")}
-                  label="Total Power - Total power of hf, lf and vlf waves produced by the heart (milliseconds ^ 2) hf + lf + vlf"
-                  error={touched.total_power && errors.total_power}
-                />
-                <Input
-                  type="number"
-                  value={values.vlf}
-                  onChange={handleChange("vlf")}
-                  label="VLF - Very low frequency wave power (milliseconds ^ 2)"
-                  error={touched.vlf && errors.vlf}
-                />
-                <SendButton
-                  color="primary"
-                  type="submit"
-                  onClick={() => handleSubmit()}
-                >
-                  Send
-                </SendButton>
-                <TestOptionsContainer>
-                  <LabelButton
-                    color="primary"
-                    onClick={handleTestData("positive")}
-                  >
-                    Set Positive Test Data
-                  </LabelButton>
-                  <LabelButton
-                    color="primary"
-                    onClick={handleTestData("negative")}
-                  >
-                    Set Negative Test Data
-                  </LabelButton>
-                  <LabelButton color="primary" onClick={handleTestData()}>
-                    Reset
-                  </LabelButton>
-                </TestOptionsContainer>
+                    <Input
+                      type="number"
+                      value={values.total_power}
+                      onChange={handleChange("total_power")}
+                      label="Total Power - Total power of hf, lf and vlf waves produced by the heart (milliseconds ^ 2) hf + lf + vlf"
+                      error={touched.total_power && errors.total_power}
+                    />
+                    <Input
+                      type="number"
+                      value={values.vlf}
+                      onChange={handleChange("vlf")}
+                      label="VLF - Very low frequency wave power (milliseconds ^ 2)"
+                      error={touched.vlf && errors.vlf}
+                    />
+                    <SendButton
+                      color="primary"
+                      type="submit"
+                      onClick={() => handleSubmit()}
+                    >
+                      Send
+                    </SendButton>
+                    <TestOptionsContainer>
+                      <LabelButton
+                        color="primary"
+                        onClick={handleTestData("positive")}
+                      >
+                        Set Positive Test Data
+                      </LabelButton>
+                      <LabelButton
+                        color="primary"
+                        onClick={handleTestData("negative")}
+                      >
+                        Set Negative Test Data
+                      </LabelButton>
+                      <LabelButton color="primary" onClick={handleTestData()}>
+                        Reset
+                      </LabelButton>
+                    </TestOptionsContainer>
+                  </>
+                )}
               </FormContainer>
             );
           }}

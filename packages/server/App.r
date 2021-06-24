@@ -21,10 +21,9 @@ cors <- function(req, res) {
 #' @serializer unboxedJSON
 function(req){
     body = jsonlite::fromJSON(req$postBody)
-    print(req)
     print('Data received...')
     print(body)
     executeModel(body)
 }
 
-print('app.R running')
+print('Server running')

@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "client",
+  "appId": "com.covid19-prediction",
+  "appName": "COVID-19 Symptoms Prediction",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",

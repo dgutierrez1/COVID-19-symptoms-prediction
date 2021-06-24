@@ -1,20 +1,17 @@
+require(tidyr)
+require(dplyr)
+require(magrittr)
+require(httr)
+require(jsonlite)
 
 executeModel = function(data){
-      require(tidyr)
-  require(dplyr)
-  require(magrittr)
-  require(httr)
-  require(jsonlite)
-    class(data)
-    str(data)
-    summary(data)
-    data = data.frame(data)
-    class(data)
-    str(data)
-    summary(data)
+  data_df = data.frame(data)
+  print('Data frame received...');
+  summary(data_df)
   print('Executing model...');
-  model = load('./tree.model.RData')
-    print('Executed model...');
-    pred = predict(tree.model.over, newdata=data)
-    list(result = pred)
+  model = load('./model.RData')
+  pred = predict(tree.model.over, newdata=data_df)
+  print('Executed model...');
+  print(pred)
+  list(result = pred)
 }
